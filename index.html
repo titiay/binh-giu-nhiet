@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>CuteBottle – Bình Giữ Nhiệt Cute</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --pink: #FF4D7D;
+      --pink-light: #FFE0EA;
+      --pink-pale: #FFF5F8;
+      --red: #E8192C;
+      --navy: #1A3C6E;
+      --olive: #5A6B20;
+      --text: #222;
+      --gray: #888;
+      --border: #f0f0f0;
+      --white: #fff;
+      --radius: 16px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html,
+    body {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      background: #f7f7f7;
+      font-family: 'Nunito', sans-serif;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      gap: 12px;
+      box-shadow: 0 2px 10px rgba(255, 77, 125, 0.08);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 900;
+      font-size: 1.2rem;
+      color: var(--pink);
+      text-decoration: none;
+      flex: 1;
+    }
+
+    .nav-logo-icon {
+      font-size: 1.3rem;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .nav-icon {
+      font-size: 1.25rem;
+      cursor: pointer;
+      color: var(--text);
+      position: relative;
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -5px;
+      right: -7px;
+      background: var(--pink);
+      color: #fff;
+      border-radius: 50%;
+      width: 15px;
+      height: 15px;
+      font-size: 0.55rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+
+    /* ── HERO CAROUSEL ── */
+    .hero-wrap {
+      position: relative;
+      background: linear-gradient(160deg, #fff0f5 0%, #ffe4ee 100%);
+      overflow: hidden;
+    }
+
+    .carousel {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .slide-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 0;
+      background: linear-gradient(160deg, #fff0f5, #ffe4ee);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ddd;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background: var(--pink);
+      width: 22px;
+      border-radius: 4px;
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: #fff;
+      display: flex;
+      justify-content: space-around;
+      padding: 14px 8px;
+      gap: 4px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+
+    .trust-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: var(--text);
+      text-align: center;
+      max-width: 72px;
+    }
+
+    .trust-icon {
+      font-size: 1.3rem;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: #fff;
+      border-radius: var(--radius);
+      margin: 0 12px 10px;
+      padding: 16px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    /* ── FLASH SALE ── */
+    .flash-header {
+      background: var(--pink);
+      border-radius: 12px 12px 0 0;
+      margin: -16px -16px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      color: #fff;
+    }
+
+    .flash-title {
+      font-weight: 900;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .flash-timer {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.72rem;
+    }
+
+    .t-box {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 4px 6px;
+      border-radius: 6px;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800;
+      font-size: 0.9rem;
+      min-width: 26px;
+      text-align: center;
+    }
+
+    .t-sep {
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 900;
+      font-size: 0.85rem;
+    }
+
+    .t-lbl {
+      font-size: 0.5rem;
+      color: rgba(255, 255, 255, 0.7);
+      text-align: center;
+      display: block;
+      margin-top: 1px;
+    }
+
+    .flash-body {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .flash-pct {
+      font-family: 'Baloo 2', cursive;
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--red);
+      line-height: 1;
+    }
+
+    .flash-sub {
+      font-size: 0.72rem;
+      color: var(--gray);
+      font-weight: 700;
+    }
+
+    .flash-right {
+      flex: 1;
+    }
+
+    .flash-orig {
+      text-decoration: line-through;
+      color: var(--gray);
+      font-size: 0.82rem;
+    }
+
+    .flash-price2 {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--pink);
+    }
+
+    .flash-stock {
+      font-size: 0.75rem;
+      color: var(--red);
+      font-weight: 700;
+      margin: 4px 0 10px;
+    }
+
+    .btn-flash {
+      background: var(--pink);
+      color: #fff;
+      width: 100%;
+      border: none;
+      border-radius: 30px;
+      padding: 12px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .btn-flash:active {
+      opacity: 0.85;
+    }
+
+    /* ── PRODUCT INFO ── */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+
+    .product-layout {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .product-list {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .product-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+
+    .check-icon {
+      color: var(--pink);
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .product-img-wrap {
+      width: 110px;
+      height: 110px;
+      border-radius: 14px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+      background: #f9f9f9;
+    }
+
+    .product-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .thumbs-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .thumb-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.62rem;
+      color: var(--gray);
+      font-weight: 600;
+      text-align: center;
+      flex: 1;
+    }
+
+    .thumb-img-wrap {
+      width: 58px;
+      height: 58px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1.5px solid var(--border);
+      background: #f5f5f5;
+    }
+
+    .thumb-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── REVIEWS ── */
+    .reviews-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .see-all {
+      font-size: 0.78rem;
+      color: var(--pink);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .reviews-scroll {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      margin: 0 -16px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .reviews-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .review-card {
+      min-width: 170px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      flex-shrink: 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    .stars {
+      color: #FFB400;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+    }
+
+    .review-text {
+      font-size: 0.78rem;
+      color: var(--text);
+      font-style: italic;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--pink-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .reviewer-name {
+      font-weight: 800;
+      font-size: 0.8rem;
+    }
+
+    /* ── COLORS ── */
+    .colors-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .color-card {
+      flex: 1;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1.5px solid var(--border);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .color-card:active {
+      transform: scale(0.97);
+    }
+
+    .color-img-wrap {
+      height: 130px;
+      overflow: hidden;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+    }
+
+    .color-img-wrap img {
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .color-label {
+      padding: 8px 6px;
+      font-weight: 800;
+      font-size: 0.72rem;
+      color: #fff;
+      text-align: center;
+    }
+
+    .navy-bg {
+      background: var(--navy);
+    }
+
+    .pink-bg {
+      background: var(--pink);
+    }
+
+    .olive-bg {
+      background: var(--olive);
+    }
+
+    /* ── ORDER FORM ── */
+    .order-section {
+      background: linear-gradient(160deg, #fff5f8, #ffe8f0);
+      padding: 24px 16px 100px;
+    }
+
+    .order-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--pink);
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    .order-sub {
+      font-size: 0.82rem;
+      color: var(--gray);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      color: var(--gray);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 13px 16px 13px 40px;
+      border: 2px solid #eee;
+      border-radius: 30px;
+      font-size: 0.92rem;
+      font-family: 'Nunito', sans-serif;
+      outline: none;
+      background: #fff;
+      transition: border-color 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .form-input:focus {
+      border-color: var(--pink);
+    }
+
+    /* ── ADDRESS GROUP ── */
+    .addr-group {
+      background: #fff;
+      border-radius: 20px;
+      padding: 12px;
+      border: 2px solid #eee;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .addr-group-title {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--pink);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed #ffd6e4;
+    }
+
+    .select-wrap {
+      position: relative;
+    }
+
+    .select-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      color: var(--gray);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .chevron {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: var(--gray);
+      font-size: 0.75rem;
+    }
+
+    .form-select {
+      width: 100%;
+      padding: 13px 36px 13px 40px;
+      border: 2px solid #eee;
+      border-radius: 30px;
+      font-size: 0.88rem;
+      font-family: 'Nunito', sans-serif;
+      outline: none;
+      background: #fff;
+      transition: border-color 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      color: #444;
+    }
+
+    .form-select:focus {
+      border-color: var(--pink);
+    }
+
+    .form-select:disabled {
+      background: #f5f5f5;
+      color: #aaa;
+      cursor: not-allowed;
+    }
+
+    /* loading skeleton cho select */
+    .select-loading {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .select-loading-text {
+      font-size: 0.75rem;
+      color: var(--gray);
+      padding: 4px 8px;
+      display: none;
+    }
+
+    .select-loading-text.show {
+      display: block;
+    }
+
+    /* ── COMBO RADIO ── */
+    .combo-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .combo-label-title {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--pink);
+      padding: 0 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .combo-card {
+      border: 2px solid #eee;
+      border-radius: 16px;
+      background: #fff;
+      padding: 11px 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .combo-card:active {
+      transform: scale(0.98);
+    }
+
+    .combo-card.selected {
+      border-color: var(--pink);
+      background: #fff5f8;
+    }
+
+    .combo-radio {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #ddd;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .combo-card.selected .combo-radio {
+      border-color: var(--pink);
+      background: var(--pink);
+    }
+
+    .combo-radio-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .combo-card.selected .combo-radio-dot {
+      opacity: 1;
+    }
+
+    .combo-info {
+      flex: 1;
+    }
+
+    .combo-name {
+      font-weight: 800;
+      font-size: 0.88rem;
+      color: #222;
+      margin-bottom: 2px;
+    }
+
+    .combo-price {
+      font-weight: 900;
+      font-size: 0.95rem;
+      color: var(--pink);
+    }
+
+    .combo-ship {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #666;
+      margin-left: 6px;
+    }
+
+    .combo-badge {
+      position: absolute;
+      top: -8px;
+      right: 10px;
+      background: var(--pink);
+      color: #fff;
+      font-size: 0.6rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+
+    .combo-save {
+      font-size: 0.65rem;
+      color: #fff;
+      font-weight: 800;
+      background: #e8192c;
+      border-radius: 8px;
+      padding: 2px 7px;
+      margin-left: 6px;
+    }
+
+    .combo-save2 {
+      font-size: 0.65rem;
+      color: #e8192c;
+      font-weight: 800;
+    }
+
+    /* ── BUTTON ── */
+    .btn-order {
+      background: var(--pink);
+      color: #fff;
+      width: 100%;
+      border: none;
+      border-radius: 30px;
+      padding: 14px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      box-shadow: 0 5px 20px rgba(255, 77, 125, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.15s;
+    }
+
+    .btn-order:active {
+      transform: scale(0.98);
+    }
+
+    .btn-order:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .privacy-note {
+      font-size: 0.72rem;
+      color: var(--gray);
+      text-align: center;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    /* ── BOTTOM BAR ── */
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      z-index: 200;
+      display: flex;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-bottom {
+      flex: 1;
+      padding: 14px 10px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: opacity 0.15s;
+    }
+
+    .btn-bottom:active {
+      opacity: 0.85;
+    }
+
+    .btn-buy-now {
+      background: var(--pink);
+      color: #fff;
+    }
+
+    .btn-add-cart {
+      background: #fff;
+      color: var(--pink);
+      border-left: 1px solid #ffe0ea;
+    }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%) translateY(40px);
+      background: #22c55e;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      z-index: 999;
+      opacity: 0;
+      transition: all 0.35s;
+      white-space: nowrap;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      max-width: 90vw;
+      text-align: center;
+      white-space: normal;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    .toast.error {
+      background: #ef4444;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2.5px solid rgba(255, 255, 255, 0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .divider {
+      height: 8px;
+      background: #f7f7f7;
+      margin: 0;
+    }
+
+    /* ── COLOR PICKER ── */
+    .color-picker-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .color-picker-title {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--pink);
+      padding: 0 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .color-options {
+      display: flex;
+      gap: 10px;
+    }
+
+    .color-option {
+      flex: 1;
+      border: 2px solid #eee;
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: #fff;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .color-option:active {
+      transform: scale(0.96);
+    }
+
+    .color-option.selected {
+      border-color: var(--pink);
+      box-shadow: 0 0 0 2px rgba(255, 77, 125, 0.25);
+    }
+
+    .color-option-swatch {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      position: relative;
+    }
+
+    .color-option.selected .color-option-swatch::after {
+      content: '✓';
+      position: absolute;
+      top: 4px;
+      right: 6px;
+      background: var(--pink);
+      color: #fff;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      font-size: 0.65rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .color-swatch-navy {
+      background: linear-gradient(135deg, #1a3c6e, #2a5098);
+    }
+
+    .color-swatch-pink {
+      background: linear-gradient(135deg, #ff9ab8, #ff4d7d);
+    }
+
+    .color-swatch-olive {
+      background: linear-gradient(135deg, #7a8f2e, #5a6b20);
+    }
+
+    .color-option-label {
+      padding: 6px 4px;
+      font-weight: 800;
+      font-size: 0.68rem;
+      text-align: center;
+      color: #333;
+    }
+
+    .color-option.selected .color-option-label {
+      color: var(--pink);
+    }
+
+    /* ── NOTE / GHI CHÚ ── */
+    .textarea-wrap {
+      position: relative;
+    }
+
+    .textarea-icon {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      font-size: 1rem;
+      color: var(--gray);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .form-textarea {
+      width: 100%;
+      padding: 13px 16px 13px 40px;
+      border: 2px solid #eee;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-family: 'Nunito', sans-serif;
+      outline: none;
+      background: #fff;
+      transition: border-color 0.2s;
+      resize: none;
+      min-height: 80px;
+      line-height: 1.5;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .form-textarea:focus {
+      border-color: var(--pink);
+    }
+
+    .textarea-counter {
+      font-size: 0.68rem;
+      color: var(--gray);
+      text-align: right;
+      padding-right: 4px;
+      margin-top: 2px;
+    }
+
+    /* ── FIELD ERROR ── */
+    .field-error {
+      border-color: #ef4444 !important;
+    }
+
+    .error-msg {
+      font-size: 0.72rem;
+      color: #ef4444;
+      font-weight: 700;
+      padding: 2px 14px 0;
+      display: none;
+    }
+
+    .error-msg.show {
+      display: block;
+    }
+    .color-ta {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a class="nav-logo" href="#">
+      <span class="nav-logo-icon">🐾</span> CuteBottle
+    </a>
+    <div class="nav-right">
+      <span class="nav-icon">🔍</span>
+      <span class="nav-icon" style="position:relative">🛒<span class="cart-badge">2</span></span>
+      <span class="nav-icon">☰</span>
+    </div>
+  </nav>
+
+  <!-- HERO CAROUSEL -->
+  <div class="hero-wrap">
+    <div class="carousel" id="carousel">
+      <div class="carousel-track" id="track">
+        <div onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})" class="carousel-slide">
+          <img class="slide-img" src="img/banner1.png" alt="Bình giữ nhiệt CuteBottle">
+        </div>
+        <div onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})" class="carousel-slide">
+          <img class="slide-img" src="img/banner 2.png" alt="Xanh Navy">
+        </div>
+        <div onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})" class="carousel-slide">
+          <img class="slide-img" src="img/banner 3.png" alt="Xanh Olive">
+        </div>
+        <div onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})" class="carousel-slide">
+          <img class="slide-img" src="img/banner 4.png" alt="Hồng Pastel">
+        </div>
+      </div>
+    </div>
+    <div class="carousel-dots" id="dots">
+      <div class="dot active" onclick="goSlide(0)"></div>
+      <div class="dot" onclick="goSlide(1)"></div>
+      <div class="dot" onclick="goSlide(2)"></div>
+      <div class="dot" onclick="goSlide(3)"></div>
+    </div>
+  </div>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item"><span class="trust-icon">🚚</span>Giao hàng<br>toàn quốc</div>
+    <div class="trust-item"><span class="trust-icon">🔄</span>Đổi trả 7 ngày<br>miễn phí</div>
+    <div class="trust-item"><span class="trust-icon">🛡️</span>Bảo hành<br>6 tháng</div>
+    <div class="trust-item"><span class="trust-icon">🔒</span>Thanh toán<br>an toàn</div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- FLASH SALE -->
+  <div class="card">
+    <div class="flash-header">
+      <div class="flash-title">⚡ FLASH SALE</div>
+      <div class="flash-timer">
+        <span style="font-size:0.68rem;opacity:0.85">Kết thúc sau:</span>
+        <div>
+          <div class="t-box" id="cd-d">00</div><span class="t-lbl">NGÀY</span>
+        </div>
+        <span class="t-sep">:</span>
+        <div>
+          <div class="t-box" id="cd-h">15</div><span class="t-lbl">GIỜ</span>
+        </div>
+        <span class="t-sep">:</span>
+        <div>
+          <div class="t-box" id="cd-m">38</div><span class="t-lbl">PHÚT</span>
+        </div>
+        <span class="t-sep">:</span>
+        <div>
+          <div class="t-box" id="cd-s">45</div><span class="t-lbl">GIÂY</span>
+        </div>
+      </div>
+    </div>
+    <div class="flash-body">
+      <div>
+        <div class="flash-sub">GIẢM NGAY</div>
+        <div class="flash-pct">50%</div>
+      </div>
+      <div class="flash-right">
+        <div class="flash-orig">Giá gốc: <s>300.000đ</s></div>
+        <div>Chỉ còn: <span class="flash-price2">149.000đ</span></div>
+        <div class="flash-stock">🔥 Số lượng có hạn!</div>
+        <button class="btn-flash" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">MUA
+          NGAY</button>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- PRODUCT INFO -->
+  <div class="card">
+    <div class="section-title">🐾 THÔNG TIN SẢN PHẨM</div>
+    <div class="product-layout">
+      <div class="product-list">
+        <div class="product-item"><span class="check-icon">✅</span>Chất liệu: Inox 317 cao cấp, an toàn thực phẩm</div>
+        <div class="product-item"><span class="check-icon">✅</span>Dung tích: 400ml</div>
+        <div class="product-item"><span class="check-icon">✅</span>Giữ nhiệt: 12–24 giờ (giữ nóng và lạnh)</div>
+        <div class="product-item"><span class="check-icon">✅</span>Nắp bật 1 chạm, ống hút silicone tiện lợi</div>
+        <div class="product-item"><span class="check-icon">✅</span>Thiết kế chống trơn, dễ dàng mang theo</div>
+      </div>
+      <div class="product-img-wrap">
+        <img src="img/chất liệu.png" alt="Sản phẩm">
+      </div>
+    </div>
+    <div class="thumbs-row">
+      <div class="thumb-item">
+        <div class="thumb-img-wrap"><img src="img/nắp bật.png" alt="Nắp bật 1 chạm"></div>
+        Nắp bật<br>1 chạm
+      </div>
+      <div class="thumb-item">
+        <div class="thumb-img-wrap"><img src="img/ống hút.png" alt="Ống hút silicone"></div>
+        Ống hút<br>silicone
+      </div>
+      <div class="thumb-item">
+        <div class="thumb-img-wrap"><img src="img/sticker.png" alt="Tặng sticker"></div>
+        Tặng kèm<br>sticker
+      </div>
+      <div class="thumb-item">
+        <div class="thumb-img-wrap"><img src="img/chất liệu.png" alt="Chất liệu inox"></div>
+        Chất lượng<br>cao
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- REVIEWS -->
+  <div class="card">
+    <div class="reviews-header">
+      <div class="section-title" style="margin-bottom:0">🐾 KHÁCH HÀNG NÓI GÌ?</div>
+      <div class="see-all">Xem tất cả ›</div>
+    </div>
+    <div class="reviews-scroll">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">"Bình siêu xinh, giữ nhiệt tốt mang đi học rất tiện!"</div>
+        <div class="reviewer">
+          <div class="avatar"><img src="./img/hoc sinh.jpg" alt="Ngọc Anh"></div>
+          <div>
+            <div class="reviewer-name">Ngọc Anh</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">"Chất lượng tốt, nắp bật dễ dùng, không bị rò nước."</div>
+        <div class="reviewer">
+          <div class="avatar"><img src="./img/trai.webp" alt="Quang Nhất DZ"></div>
+          <div>
+            <div class="reviewer-name">Quang Nhất DZ</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">"Mình mua cho bé đi học, bé rất thích luôn!"</div>
+        <div class="reviewer">
+          <div class="avatar"><img src="./img/gai xinh.jpg" alt="Hồng Nhung"></div>
+          <div>
+            <div class="reviewer-name">Hồng Nhung</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- 3 COLORS -->
+  <div class="card">
+    <div class="section-title">🐾 3 MÀU SẮC DỄ THƯƠNG</div>
+    <div class="colors-row">
+      <div class="color-card">
+        <div class="color-img-wrap"><img src="img/xanh.png" alt="Xanh Navy"></div>
+        <div class="color-label navy-bg">Xanh Navy</div>
+      </div>
+      <div class="color-card">
+        <div class="color-img-wrap"><img src="img/hồng.png" alt="Hồng Pastel"></div>
+        <div class="color-label pink-bg">Hồng Pastel</div>
+      </div>
+      <div class="color-card">
+        <div class="color-img-wrap"><img src="img/xanh la.png" alt="Xanh Lá"></div>
+        <div class="color-label olive-bg">Xanh Lá</div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- ORDER FORM -->
+  <div class="order-section" id="order">
+    <div class="order-title">📦 ĐẶT HÀNG NGAY</div>
+    <div class="order-sub">Điền thông tin để nhận ưu đãi</div>
+    <div class="form-wrap">
+
+      <!-- Họ tên -->
+      <div class="input-wrap">
+        <span class="input-icon">👤</span>
+        <input class="form-input" type="text" id="f-name" placeholder="Họ và tên">
+      </div>
+      <div class="error-msg" id="err-name">Vui lòng nhập họ và tên</div>
+
+      <!-- SĐT -->
+      <div class="input-wrap">
+        <span class="input-icon">📞</span>
+        <input class="form-input" type="tel" id="f-phone" placeholder="Số điện thoại" inputmode="numeric">
+      </div>
+      <div class="error-msg" id="err-phone">Vui lòng nhập số điện thoại hợp lệ (10 số)</div>
+
+      <!-- Địa chỉ nhóm -->
+      <div class="addr-group">
+        <div class="addr-group-title">📍 Địa chỉ giao hàng</div>
+
+        <!-- Tỉnh / Thành phố -->
+        <div>
+          <div class="select-wrap">
+            <span class="select-icon">🗺️</span>
+            <select class="form-select select-loading" id="sel-tinh" onchange="onTinhChange()" disabled>
+              <option value="">Đang tải danh sách tỉnh...</option>
+            </select>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="select-loading-text show" id="loading-tinh">⏳ Đang tải tỉnh/thành phố...</div>
+          <div class="error-msg" id="err-tinh">Vui lòng chọn Tỉnh / Thành phố</div>
+        </div>
+
+        <!-- Quận / Huyện -->
+        <div>
+          <div class="select-wrap">
+            <span class="select-icon">🏙️</span>
+            <select class="form-select" id="sel-quan" onchange="onQuanChange()" disabled>
+              <option value="">Chọn Quận / Huyện</option>
+            </select>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="select-loading-text" id="loading-quan"></div>
+          <div class="error-msg" id="err-quan">Vui lòng chọn Quận / Huyện</div>
+        </div>
+
+        <!-- Phường / Xã -->
+        <div>
+          <div class="select-wrap">
+            <span class="select-icon">🏘️</span>
+            <select class="form-select" id="sel-xa" disabled>
+              <option value="">Chọn Phường / Xã</option>
+            </select>
+            <span class="chevron">▼</span>
+          </div>
+          <div class="select-loading-text" id="loading-xa"></div>
+          <div class="error-msg" id="err-xa">Vui lòng chọn Phường / Xã</div>
+        </div>
+
+        <!-- Số nhà -->
+        <div class="input-wrap">
+          <span class="input-icon">🏠</span>
+          <input class="form-input" type="text" id="f-street" placeholder="Số nhà, tên đường...">
+        </div>
+        <div class="error-msg" id="err-street">Vui lòng nhập số nhà / tên đường</div>
+      </div>
+
+      <!-- Chọn combo -->
+      <div class="combo-group">
+        <div class="combo-label-title">🛍️ Chọn sản phẩm</div>
+
+        <div class="combo-card" id="combo1" onclick="selectCombo(1)">
+          <div class="combo-radio">
+            <div class="combo-radio-dot"></div>
+          </div>
+          <div class="combo-info">
+            <div class="combo-name">Combo 1 bình</div>
+            <div>
+              <span class="combo-price">149.000đ</span>
+              <span class="combo-ship">+ 30.000đ ship</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="combo-card selected" id="combo2" onclick="selectCombo(2)">
+          <div class="combo-badge">🔥 BÁN CHẠY</div>
+          <div class="combo-radio">
+            <div class="combo-radio-dot"></div>
+          </div>
+          <div class="combo-info">
+            <div class="combo-name">Combo 2 bình</div>
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+              <span class="combo-price">269.000đ</span>
+              <span class="combo-save">MIỄN SHIP</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="combo-card" id="combo3" onclick="selectCombo(3)">
+          <div class="combo-radio">
+            <div class="combo-radio-dot"></div>
+          </div>
+          <div class="combo-info">
+            <div class="combo-name">Combo 3 bình</div>
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+              <span class="combo-price">349.000đ</span>
+              <span class="combo-save">MIỄN SHIP</span>
+              <span class="combo-save2">TIẾT KIỆM 98K</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chọn màu sắc -->
+      <div class="color-picker-group">
+        <div class="color-picker-title">🎨 Chọn màu sắc</div>
+        <div class="color-options">
+          <div class="color-option" id="color-navy" onclick="selectColor('Xanh Navy')">
+            <img src="./img/xanh.png" alt="" class="color-ta">
+            <div class="color-option-label">Xanh Navy</div>
+          </div>
+          <div class="color-option" id="color-hong" onclick="selectColor('Hồng Pastel')">
+            <img src="./img/hồng.png" alt="" class="color-ta">
+            <div class="color-option-label">Hồng Pastel</div>
+          </div>
+          <div class="color-option" id="color-olive" onclick="selectColor('Xanh Lá')">
+            <img src="./img/xanh la.png" alt="" class="color-ta">
+            <div class="color-option-label">Xanh Lá</div>
+          </div>
+        </div>
+        <div class="error-msg" id="err-color">Vui lòng chọn màu sắc</div>
+      </div>
+
+      <!-- Ghi chú -->
+      <div>
+        <div class="textarea-wrap">
+          <span class="textarea-icon">📝</span>
+          <textarea class="form-textarea" id="f-note" placeholder="Ghi chú màu sắc cho đơn hàng từ 2 bình
+VD: 1 xanh lá, 1 hồng
+VD: 2 hồng, 1 xanh navy" maxlength="200"
+            oninput="updateCounter()"></textarea>
+        </div>
+        <div class="textarea-counter"><span id="note-count">0</span>/200 ký tự</div>
+      </div>
+
+      <button class="btn-order" id="submit-btn" onclick="submitOrder()">
+        <span id="btn-text">ĐẶT HÀNG NGAY 🛒</span>
+        <span id="btn-spinner" style="display:none"><span class="spinner"></span> Đang gửi...</span>
+      </button>
+      <div class="privacy-note">🔒 Cam kết bảo mật thông tin của bạn</div>
+    </div>
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="bottom-bar">
+    <button class="btn-bottom btn-buy-now"
+      onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">MUA NGAY 🛒</button>
+    <button class="btn-bottom btn-add-cart">🛍️ THÊM VÀO GIỎ</button>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ===================================================
+    // ⚠️  THAY URL NÀY BẰNG WEB APP URL CỦA BẠN
+    //     (Xem hướng dẫn trong file google-apps-script.js)
+    // ===================================================
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxIMEiAYhX_j5d71PO1aRRJ58-ieEt52JYFbhYPfj15AQ7ouX6PGcSfpUy2fYFeZcO_og/exec';
+
+    // ── CAROUSEL ──
+    let current = 0;
+    const total = 4;
+    const track = document.getElementById('track');
+    const dots = document.querySelectorAll('.dot');
+    let autoTimer;
+
+    function goSlide(n) {
+      current = (n + total) % total;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      resetAuto();
+    }
+    function resetAuto() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(() => goSlide(current + 1), 4000);
+    }
+    resetAuto();
+
+    let startX = 0;
+    track.parentElement.addEventListener('touchstart', e => startX = e.touches[0].clientX, { passive: true });
+    track.parentElement.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) goSlide(dx < 0 ? current + 1 : current - 1);
+    });
+
+    // ── COUNTDOWN ──
+    const endDate = new Date();
+    endDate.setDate(endDate.getDate() + 0);
+    endDate.setHours(endDate.getHours() + 0, endDate.getMinutes() + 30, endDate.getSeconds() + 45);
+    function pad(n) { return String(n).padStart(2, '0'); }
+    function tick() {
+      const diff = endDate - new Date();
+      if (diff <= 0) return;
+      document.getElementById('cd-d').textContent = pad(Math.floor(diff / 86400000));
+      document.getElementById('cd-h').textContent = pad(Math.floor((diff % 86400000) / 3600000));
+      document.getElementById('cd-m').textContent = pad(Math.floor((diff % 3600000) / 60000));
+      document.getElementById('cd-s').textContent = pad(Math.floor((diff % 60000) / 1000));
+    }
+    setInterval(tick, 1000); tick();
+
+    // ── COMBO RADIO ──
+    let selectedCombo = 2;
+    function selectCombo(n) {
+      selectedCombo = n;
+      [1, 2, 3].forEach(i => {
+        const card = document.getElementById('combo' + i);
+        card.classList.toggle('selected', i === n);
+      });
+    }
+
+    // ── COLOR PICKER ──
+    const COLOR_MAP = {
+      'Xanh Navy': 'color-navy',
+      'Hồng Pastel': 'color-hong',
+      'Xanh Lá': 'color-olive'
+    };
+    let selectedColor = '';
+
+    function selectColor(colorName) {
+      selectedColor = colorName;
+      Object.keys(COLOR_MAP).forEach(c => {
+        document.getElementById(COLOR_MAP[c]).classList.toggle('selected', c === colorName);
+      });
+      clearError('color');
+    }
+
+    // ── TEXTAREA COUNTER ──
+    function updateCounter() {
+      const val = document.getElementById('f-note').value;
+      document.getElementById('note-count').textContent = val.length;
+    }
+
+    // ── ADDRESS API (provinces.open-api.vn) ──
+    const BASE_URL = 'https://provinces.open-api.vn/api';
+    let tinhData = []; // cache
+
+    const selTinh = document.getElementById('sel-tinh');
+    const selQuan = document.getElementById('sel-quan');
+    const selXa = document.getElementById('sel-xa');
+
+    async function fetchJSON(url) {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('API error ' + res.status);
+      return res.json();
+    }
+
+    // Load tỉnh khi page load
+    (async function loadTinh() {
+      try {
+        tinhData = await fetchJSON(`${BASE_URL}/?depth=1`);
+        // Sắp xếp theo tên
+        tinhData.sort((a, b) => a.name.localeCompare(b.name, 'vi'));
+
+        selTinh.innerHTML = '<option value="">Chọn Tỉnh / Thành phố</option>';
+        tinhData.forEach(t => {
+          const o = document.createElement('option');
+          o.value = t.code;
+          o.textContent = t.name;
+          selTinh.appendChild(o);
+        });
+        selTinh.disabled = false;
+        selTinh.classList.remove('select-loading');
+        document.getElementById('loading-tinh').classList.remove('show');
+      } catch (e) {
+        document.getElementById('loading-tinh').textContent = '❌ Không tải được danh sách tỉnh. Vui lòng thử lại.';
+        console.error('Load tỉnh thất bại:', e);
+      }
+    })();
+
+    async function onTinhChange() {
+      const code = selTinh.value;
+
+      // Reset quận và xã
+      selQuan.innerHTML = '<option value="">Chọn Quận / Huyện</option>';
+      selXa.innerHTML = '<option value="">Chọn Phường / Xã</option>';
+      selQuan.disabled = true;
+      selXa.disabled = true;
+      clearError('tinh');
+
+      if (!code) return;
+
+      const loadQ = document.getElementById('loading-quan');
+      loadQ.textContent = '⏳ Đang tải quận/huyện...';
+      loadQ.classList.add('show');
+      selQuan.classList.add('select-loading');
+
+      try {
+        const data = await fetchJSON(`${BASE_URL}/p/${code}?depth=2`);
+        const quans = (data.districts || []).sort((a, b) => a.name.localeCompare(b.name, 'vi'));
+
+        selQuan.innerHTML = '<option value="">Chọn Quận / Huyện</option>';
+        quans.forEach(q => {
+          const o = document.createElement('option');
+          o.value = q.code;
+          o.textContent = q.name;
+          selQuan.appendChild(o);
+        });
+        selQuan.disabled = false;
+        selQuan.classList.remove('select-loading');
+        loadQ.classList.remove('show');
+      } catch (e) {
+        loadQ.textContent = '❌ Không tải được danh sách quận/huyện.';
+        console.error('Load quận thất bại:', e);
+      }
+    }
+
+    async function onQuanChange() {
+      const code = selQuan.value;
+
+      selXa.innerHTML = '<option value="">Chọn Phường / Xã</option>';
+      selXa.disabled = true;
+      clearError('quan');
+
+      if (!code) return;
+
+      const loadX = document.getElementById('loading-xa');
+      loadX.textContent = '⏳ Đang tải phường/xã...';
+      loadX.classList.add('show');
+      selXa.classList.add('select-loading');
+
+      try {
+        const data = await fetchJSON(`${BASE_URL}/d/${code}?depth=2`);
+        const xas = (data.wards || []).sort((a, b) => a.name.localeCompare(b.name, 'vi'));
+
+        selXa.innerHTML = '<option value="">Chọn Phường / Xã</option>';
+        xas.forEach(x => {
+          const o = document.createElement('option');
+          o.value = x.code;
+          o.textContent = x.name;
+          selXa.appendChild(o);
+        });
+        selXa.disabled = false;
+        selXa.classList.remove('select-loading');
+        loadX.classList.remove('show');
+      } catch (e) {
+        loadX.textContent = '❌ Không tải được danh sách phường/xã.';
+        console.error('Load xã thất bại:', e);
+      }
+    }
+
+    // ── VALIDATION ──
+    function showError(field, show) {
+      const input = document.getElementById('f-' + field) || document.getElementById('sel-' + field);
+      const msg = document.getElementById('err-' + field);
+      if (!input || !msg) return;
+      if (show) {
+        input.classList.add('field-error');
+        msg.classList.add('show');
+      } else {
+        input.classList.remove('field-error');
+        msg.classList.remove('show');
+      }
+    }
+    function clearError(field) { showError(field, false); }
+
+    function validatePhone(p) { return /^(0[3-9][0-9]{8})$/.test(p); }
+
+    // ── FORM SUBMIT ──
+    const COMBO_NAMES = {
+      1: 'Combo 1 bình – 149.000đ (+30.000đ ship)',
+      2: 'Combo 2 bình – 269.000đ (miễn ship) 🔥 BÁN CHẠY',
+      3: 'Combo 3 bình – 349.000đ (miễn ship) – Tiết kiệm 98K'
+    };
+
+    async function submitOrder() {
+      // Lấy giá trị
+      const name = document.getElementById('f-name').value.trim();
+      const phone = document.getElementById('f-phone').value.trim();
+      const tinhEl = selTinh;
+      const quanEl = selQuan;
+      const xaEl = selXa;
+      const street = document.getElementById('f-street').value.trim();
+      const note = document.getElementById('f-note').value.trim();
+
+      const tinhText = tinhEl.options[tinhEl.selectedIndex]?.text || '';
+      const quanText = quanEl.options[quanEl.selectedIndex]?.text || '';
+      const xaText = xaEl.options[xaEl.selectedIndex]?.text || '';
+
+      // Validate
+      let valid = true;
+      if (!name) { showError('name', true); valid = false; } else clearError('name');
+      if (!validatePhone(phone)) { showError('phone', true); valid = false; } else clearError('phone');
+      if (!tinhEl.value) { showError('tinh', true); valid = false; } else clearError('tinh');
+      if (!quanEl.value) { showError('quan', true); valid = false; } else clearError('quan');
+      if (!xaEl.value) { showError('xa', true); valid = false; } else clearError('xa');
+      if (!street) { showError('street', true); valid = false; } else clearError('street');
+      if (!selectedColor) {
+        const errColor = document.getElementById('err-color');
+        errColor.classList.add('show'); valid = false;
+      } else {
+        document.getElementById('err-color').classList.remove('show');
+      }
+
+      if (!valid) {
+        document.querySelector('.field-error, .error-msg.show')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const fullAddress = `${street}, ${xaText}, ${quanText}, ${tinhText}`;
+      const product = COMBO_NAMES[selectedCombo];
+      const time = new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
+
+      // UI loading
+      const btn = document.getElementById('submit-btn');
+      document.getElementById('btn-text').style.display = 'none';
+      document.getElementById('btn-spinner').style.display = 'inline-flex';
+      btn.disabled = true;
+
+      const payload = { name, phone, address: fullAddress, product, comboId: selectedCombo, color: selectedColor, note: note || '(không có)', time };
+
+      try {
+        // no-cors vì Google Apps Script không trả CORS header cho POST
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        // Khi no-cors thành công, response.type === 'opaque' — coi là OK
+        showToast('✅ Đặt hàng thành công! Chúng tôi sẽ liên hệ bạn trong 30 phút.', false);
+        resetForm();
+      } catch (err) {
+        console.error('Submit error:', err);
+        showToast('❌ Gửi đơn thất bại, vui lòng thử lại hoặc liên hệ Fanpage!', true);
+      }
+
+      document.getElementById('btn-text').style.display = 'inline';
+      document.getElementById('btn-spinner').style.display = 'none';
+      btn.disabled = false;
+    }
+
+    function resetForm() {
+      document.getElementById('f-name').value = '';
+      document.getElementById('f-phone').value = '';
+      document.getElementById('f-street').value = '';
+      document.getElementById('f-note').value = '';
+      document.getElementById('note-count').textContent = '0';
+      selTinh.value = '';
+      selQuan.innerHTML = '<option value="">Chọn Quận / Huyện</option>';
+      selQuan.disabled = true;
+      selXa.innerHTML = '<option value="">Chọn Phường / Xã</option>';
+      selXa.disabled = true;
+      // reset màu
+      selectedColor = '';
+      Object.values(COLOR_MAP).forEach(id => document.getElementById(id).classList.remove('selected'));
+      selectCombo(2);
+    }
+
+    function showToast(msg, isError) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = 'toast' + (isError ? ' error' : '');
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 4000);
+    }
+  </script>
+</body>
+
+</html>
